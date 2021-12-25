@@ -16,9 +16,7 @@ npm i consecute
 ## Usage
 ### Subscribe and publish simple usage
 ```ts
-import consecute from 'consecute';
-
-const cs = consecute();
+import cs from 'consecute';
 
 const sub = cs.subscribe('interesting-topic', yourFunction);
 
