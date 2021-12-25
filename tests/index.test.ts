@@ -11,6 +11,21 @@ describe('given simple synchronous events', () => {
       expect(flag).toBe(false);
     });
   });
+
+  describe('when an event is subscribed and then deleted', () => {
+    test('then the hook is not run', () => {
+      const cs = consecute();
+      let flag = false;
+
+      const sub = cs.subscribe('bingo', () => { flag = true; });
+      sub.remove();
+
+      cs.publish('bingo');
+
+      expect(flag).toBe(false);
+    });
+  });
+
   describe('when the event is subscribed and published', () => {
     test('then the hook is run', () => {
       expect.assertions(2);
