@@ -20,8 +20,10 @@ import consecute from 'consecute';
 
 const cs = consecute();
 
-cs.subscribe('interesting-topic', yourFunction);
+const sub = cs.subscribe('interesting-topic', yourFunction);
 
 cs.publish('interesting-topic', your, arguments, here)
   .then((promiseSettledResults) => maybeDoSomethingIfYouLike());
+
+sub.remove(); // deletes this specific subscription
 ```
