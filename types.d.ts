@@ -1,19 +1,24 @@
 /* eslint-disable */
 
-interface Topics {
-  [key: string]: Array<Hook>,
-}
+type EventMapBase = Record<string, any>;
 
-type Hook = (...args: any) => any;
+type Topics<TEventMap extends EventMapBase> = { [key in keyof TEventMap]: Array<Hook<TEventMap[key]>> };
+  
+type Hook<TArgs> = (...args: TArgs extends Array<unknown> ? TArgs : [TArgs]) => any;
 
-interface Actions {
-  clear: () => void,
-  subscribe: (topic: string, hook: Hook) => {
-    remove: () => void,
+interface Actions<TEventMap extends EventMapBase> {
+  clear(): void;
+  subscribe<TName extends keyof TEventMap>(topic: TName, hook: Hook<TEventMap[TName]>): {
+    remove(): void,
   },
-  publish: (topic: string, ...args: Parameters<Hook>) => void,
+  publish<TName extends keyof TEventMap>(topic: TName, ...args: TEventMap[TName]): void,
 }
 
 declare module 'consecute' {
-  export default function consecute(): Actions;
+  export type EventMapBase = Record<string, any>;
+
+  const instance: Actions<EventMapBase>;
+
+  export default instance;
+  export function consecute<TEventMap extends EventMapBase = EventMapBase>(): Actions<TEventMap>;
 }

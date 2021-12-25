@@ -1,20 +1,22 @@
-function consecute(): Actions {
-  const topics: Topics = {};
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
+function consecute<TEventMap extends EventMapBase = EventMapBase>(): Actions<TEventMap> {
+  const topics: Partial<Topics<TEventMap>> = {};
 
   return {
-    subscribe: (topic: string, hook: Hook) => {
+    subscribe: (topic, hook) => {
       if (!topics.hasOwnProperty.call(topics, topic)) topics[topic] = [];
 
-      const index = topics[topic].push(hook) - 1;
+      const index = topics[topic]!.push(hook) - 1;
 
       return {
         remove: () => delete topics?.[topic]?.[index],
       };
     },
-    publish: (topic: string, ...args: Parameters<Hook>) => new Promise((resolve, reject) => {
+    publish: (topic, ...args) => new Promise((resolve, reject) => {
       if (!topics.hasOwnProperty.call(topics, topic)) reject(new Error(`Topic "${topic}" does not exist.`));
 
-      return Promise.allSettled(topics[topic].map((hook) => hook(...args)))
+      return Promise.allSettled(topics[topic]!.map((hook) => hook(...args)))
         .then((result) => resolve(result));
     }),
     clear: () => {
