@@ -14,7 +14,6 @@ npm i consecute
 ```
 
 ## Getting started
-### Subscribe and publish simple usage
 Import the globally available instance
 ```ts
 import cs from 'consecute'; // Globally available instance
@@ -27,6 +26,7 @@ const cs = consecute();
 ```
 
 ## Usage
+### Subscribe and publish simple usage
 ```ts
 const sub = cs.subscribe('interesting-topic', yourFunction);
 
