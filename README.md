@@ -26,4 +26,6 @@ cs.publish('interesting-topic', your, arguments, here)
   .then((promiseSettledResults) => maybeDoSomethingIfYouLike());
 
 sub.remove(); // deletes this specific subscription
+
+cs.clear(); // clear all topics
 ```
