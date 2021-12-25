@@ -47,8 +47,8 @@ interface EventMapBase {
   bingo: [string, number];
 }
 
-cs.subscribe('bingo', (a, b) => {
-//                     ^^^^ These have the type `string`, `number`
+cs.subscribe('bingo', (one, two) => {
+//                     ^^^^^^^^ These have the type `string`, `number`
 });
 ```
 
@@ -63,12 +63,12 @@ interface MyEventMap extends EventMapBase {
 
 const customInstance = consecute<MyEventMap>();
 
-customInstance.subscribe('binga', (event) => {
-//                                 ^^^^^ This has the type `number`
+customInstance.subscribe('binga', (one) => {
+//                                 ^^^ This has the type `number`
 });
 
-customInstance.subscribe('bingo', (event) => {
-//                                 ^^^^^ This has the type `{ a: number, b: string }`
+customInstance.subscribe('bingo', (one) => {
+//                                 ^^^ This has the type `{ a: number, b: string }`
 });
 
 customInstance.subscribe('bingu', (one, two, three) => {
@@ -85,7 +85,7 @@ interface MyEventMap extends EventMapBase {
 
 const customInstance = consecute<MyEventMap>();
 
-customInstance.subscribe('bingy', (event) => {
-//                                 ^^^^^ This has the type `Array<string>`
+customInstance.subscribe('bingy', (one) => {
+//                                 ^^^ This has the type `Array<string>`
 });
 ```
