@@ -40,12 +40,18 @@ cs.clear(); // clear all topics
 
 ### Typescript safety
 
-You can merge the `EventMapBase` declaration to specify your hook types.
+You can merge the `EventMapBase` declaration to specify your hook types. See [declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html).
 
 ```ts
-interface EventMapBase {
-  bingo: [string, number];
+// consecute.d.ts
+declare module 'consecute' {
+  interface EventMapBase {
+    bingo: [string, number];
+  }
 }
+
+// Anywhere else in your project
+import cs from 'consecute';
 
 cs.subscribe('bingo', (one, two) => {
 //                     ^^^^^^^^ These have the type `string`, `number`
