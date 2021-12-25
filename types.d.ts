@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-type EventMapBase = Record<string, any>;
+interface EventMapBase extends Record<string, any> {}
 
 type Topics<TEventMap extends EventMapBase> = { [key in keyof TEventMap]: Array<Hook<TEventMap[key]>> };
   
@@ -15,7 +15,7 @@ interface Actions<TEventMap extends EventMapBase> {
 }
 
 declare module 'consecute' {
-  export type EventMapBase = Record<string, any>;
+  export interface EventMapBase extends Record<string, any> {}
 
   const instance: Actions<EventMapBase>;
 
