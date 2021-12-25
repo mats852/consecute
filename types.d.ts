@@ -11,7 +11,7 @@ interface Actions<TEventMap extends EventMapBase> {
   subscribe<TName extends keyof TEventMap>(topic: TName, hook: Hook<TEventMap[TName]>): {
     remove(): void,
   },
-  publish<TName extends keyof TEventMap>(topic: TName, ...args: TEventMap[TName]): void,
+  publish<TName extends keyof TEventMap>(topic: TName, ...args: Parameters<Hook<TEventMap[TName]>>): void,
 }
 
 declare module 'consecute' {
