@@ -37,3 +37,53 @@ sub.remove(); // deletes this specific subscription
 
 cs.clear(); // clear all topics
 ```
+
+### Typescript type safety
+
+You can merge the EventMapBase declaration to specify your hook types.
+
+```ts
+interface EventMapBase {
+  bingo: [string, number];
+}
+
+cs.subscribe('bingo', 'abc', 123)
+```
+
+You can also extend the `EventMapBase` for your separate instances.
+
+```ts
+interface MyEventMap extends EventMapBase {
+  binga: number;
+  bingo: { a: number, b: string };
+  bingu: [string, number, boolean];
+}
+
+const customInstance = consecute<MyEventMap>();
+
+customInstance.subscribe('binga', (event) => {
+//                                 ^^^^^ This has the type `number`
+});
+
+customInstance.subscribe('bingo', (event) => {
+//                                 ^^^^^ This has the type `{ a: number, b: string }`
+});
+
+customInstance.subscribe('bingu', (one, two, three) => {
+//                                 ^^^^^^^^^^^^^^^ These have the type `string`, `number` and `boolean` respectively
+});
+```
+
+In the case where you would want to send an array as a standalone argument (not spread), you would do this
+
+```ts
+interface MyEventMap extends EventMapBase {
+  bingy: [Array<string>];
+}
+
+const customInstance = consecute<MyEventMap>();
+
+customInstance.subscribe('bingy', (event) => {
+//                                 ^^^^^ This has the type `Array<string>`
+});
+```
