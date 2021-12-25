@@ -38,16 +38,18 @@ sub.remove(); // deletes this specific subscription
 cs.clear(); // clear all topics
 ```
 
-### Typescript type safety
+### Typescript safety
 
-You can merge the EventMapBase declaration to specify your hook types.
+You can merge the `EventMapBase` declaration to specify your hook types.
 
 ```ts
 interface EventMapBase {
   bingo: [string, number];
 }
 
-cs.subscribe('bingo', 'abc', 123)
+cs.subscribe('bingo', (a, b) => {
+//                     ^^^^ These have the type `string`, `number`
+});
 ```
 
 You can also extend the `EventMapBase` for your separate instances.
