@@ -23,7 +23,7 @@
     "event-driven",
     "hooks",
     "pub-sub",
-    "async",
+    "async"
   ],
   "author": "Mathieu St-Vincent",
   "license": "Apache-2.0",
