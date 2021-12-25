@@ -13,11 +13,21 @@ Handle any Javascript and Typescript function using pub/sub.
 npm i consecute 
 ```
 
-## Usage
+## Getting started
 ### Subscribe and publish simple usage
+Import the globally available instance
 ```ts
-import cs from 'consecute';
+import cs from 'consecute'; // Globally available instance
+```
 
+Or instanciate your own instance
+```ts
+import { consecute } from 'consecute';
+const cs = consecute();
+```
+
+## Usage
+```ts
 const sub = cs.subscribe('interesting-topic', yourFunction);
 
 cs.publish('interesting-topic', your, arguments, here)

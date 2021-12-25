@@ -1,4 +1,4 @@
-import cs from '../src/index';
+import cs, { consecute } from '../src/index';
 
 beforeEach(() => {
   cs.clear();
@@ -57,6 +57,18 @@ describe('given simple synchronous events', () => {
           expect(results).toStrictEqual(flags);
           expect(res.filter((settlement: PromiseSettledResult<unknown>) => settlement.status === 'fulfilled').length).toBe(10);
         });
+    });
+  });
+
+  describe('when we instantiate a different instance of CS', () => {
+    test('then the instance runs independently', () => {
+      expect.assertions(1);
+
+      const csInstance = consecute();
+
+      cs.subscribe('bingo', () => true);
+
+      expect(csInstance.publish('bingo')).rejects.toThrowError('Topic "bingo" does not exist.');
     });
   });
 });

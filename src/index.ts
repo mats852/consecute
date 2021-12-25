@@ -23,4 +23,9 @@ function consecute(): Actions {
   };
 }
 
-export default consecute();
+const instance = consecute();
+
+export {
+  instance as default,
+  consecute,
+};
