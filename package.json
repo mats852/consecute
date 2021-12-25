@@ -28,9 +28,9 @@
   "author": "Mathieu St-Vincent",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/mats852/event-hooks/issues"
+    "url": "https://github.com/mats852/consecute/issues"
   },
-  "homepage": "https://github.com/mats852/event-hooks#readme",
+  "homepage": "https://github.com/mats852/consecute#readme",
   "devDependencies": {
     "@types/jest": "^26.0.19",
     "@typescript-eslint/eslint-plugin": "^4.11.1",

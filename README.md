@@ -5,6 +5,8 @@ Handle any Javascript and Typescript function using pub/sub.
 [![Github licence](https://img.shields.io/github/license/mats852/consecute)](https://img.shields.io/github/license/mats852/consecute)
 [![CI](https://github.com/mats852/consecute/actions/workflows/main.yml/badge.svg)](https://github.com/mats852/consecute/actions/workflows/main.yml)
 
+> Special thanks to David Walsh ([@darkwing](https://github.com/darkwing)) for [the inspiration](https://davidwalsh.name/pubsub-javascript)!
+
 ## Installation
 
 ```shell
