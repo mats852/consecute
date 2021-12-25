@@ -1,4 +1,4 @@
-export default function consecute(): Actions {
+function consecute(): Actions {
   const topics: Topics = {};
 
   return {
@@ -8,14 +8,19 @@ export default function consecute(): Actions {
       const index = topics[topic].push(hook) - 1;
 
       return {
-        remove: () => delete topics[topic][index],
+        remove: () => delete topics?.[topic]?.[index],
       };
     },
     publish: (topic: string, ...args: Parameters<Hook>) => new Promise((resolve, reject) => {
-      if (!topics.hasOwnProperty.call(topics, topic)) reject();
+      if (!topics.hasOwnProperty.call(topics, topic)) reject(new Error(`Topic "${topic}" does not exist.`));
 
       return Promise.allSettled(topics[topic].map((hook) => hook(...args)))
         .then((result) => resolve(result));
     }),
+    clear: () => {
+      Object.keys(topics).forEach((key) => delete topics[key]);
+    },
   };
 }
+
+export default consecute();

@@ -7,6 +7,7 @@ interface Topics {
 type Hook = (...args: any) => any;
 
 interface Actions {
+  clear: () => void,
   subscribe: (topic: string, hook: Hook) => {
     remove: () => void,
   },
