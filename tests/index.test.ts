@@ -39,7 +39,7 @@ describe('given simple synchronous events', () => {
 
       sub.remove();
 
-      expect(cs.publish('bingo')).rejects.toThrowError('Topic "bingo" does not exist.');
+      expect(cs.publish('bingo')).resolves.toStrictEqual([]);
     });
   });
 
@@ -68,7 +68,7 @@ describe('given simple synchronous events', () => {
 
       cs.subscribe('bingo', () => true);
 
-      expect(csInstance.publish('bingo')).rejects.toThrowError('Topic "bingo" does not exist.');
+      expect(csInstance.publish('bingo')).resolves.toStrictEqual([]);
     });
   });
 });

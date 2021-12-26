@@ -13,8 +13,8 @@ function consecute<TEventMap extends EventMapBase = EventMapBase>(): Actions<TEv
         remove: () => delete topics?.[topic]?.[index],
       };
     },
-    publish: (topic, ...args) => new Promise((resolve, reject) => {
-      if (!topics.hasOwnProperty.call(topics, topic)) reject(new Error(`Topic "${topic}" does not exist.`));
+    publish: (topic, ...args) => new Promise((resolve) => {
+      if (!topics.hasOwnProperty.call(topics, topic)) return resolve([]);
 
       return Promise.allSettled(topics[topic]!.map((hook) => hook(...args)))
         .then((result) => resolve(result));
