@@ -1,6 +1,6 @@
 {
   "name": "consecute",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Handle function execution by pub-sub",
   "main": "lib/index.js",
   "scripts": {
